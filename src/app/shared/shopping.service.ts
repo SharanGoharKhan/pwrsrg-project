@@ -37,4 +37,8 @@ constructor() { }
         this.cartItems = [];
         this.cartItemChange.next(this.cartItems);
     }
+    removeCartItem(index: number) {
+        this.cartItems.splice(index,1);
+        this.cartItemChange.next(this.cartItems.slice());
+    }
 }

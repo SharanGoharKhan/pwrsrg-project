@@ -30,5 +30,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   clearCart() {
     this.shoppingService.clearCart();
   }
+  removeCartEl(index: number) {
+    this.shoppingService.removeCartItem(index);
+  }
 
 }
