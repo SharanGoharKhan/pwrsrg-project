@@ -27,5 +27,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+  clearCart() {
+    this.shoppingService.clearCart();
+  }
 
 }

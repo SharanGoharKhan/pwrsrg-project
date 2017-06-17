@@ -5,7 +5,7 @@ import { Subject } from 'rxjs/Subject';
 export class ShoppingService {
 
 constructor() { }
-    cartItemChange = new Subject<Shopping[]>();
+    cartItemChange = new Subject<Shopping[] | null>();
     private shopping: Shopping[] = [
         new Shopping('Hat', 20),
         new Shopping('T-Shirt', 25),
@@ -25,5 +25,9 @@ constructor() { }
             return;
         }
         return this.cartItems.slice();
+    }
+    clearCart() {
+        this.cartItems = [];
+        this.cartItemChange.next(this.cartItems);
     }
 }
