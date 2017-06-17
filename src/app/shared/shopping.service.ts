@@ -7,9 +7,9 @@ export class ShoppingService {
 constructor() { }
     cartItemChange = new Subject<Shopping[] | null>();
     private shopping: Shopping[] = [
-        new Shopping('Hat', 20),
-        new Shopping('T-Shirt', 25),
-        new Shopping('Shorts', 35)
+        new Shopping('Hat', 20, 1),
+        new Shopping('T-Shirt', 25, 1),
+        new Shopping('Shorts', 35, 1)
     ];
     private cartItems: Shopping[] = [
     ];
@@ -17,6 +17,13 @@ constructor() { }
         return this.shopping.slice();
     }
     addToShoppingCart(shopping: Shopping) {
+        for(let i=0; i<this.cartItems.length; ++i) {
+            if (shopping.name == this.cartItems[i].name) {
+                this.cartItems[i].numberOfItem++;
+                this.cartItemChange.next(this.cartItems.slice());
+                return;
+            }
+        }
         this.cartItems.push(shopping);
         this.cartItemChange.next(this.cartItems.slice());
     }
