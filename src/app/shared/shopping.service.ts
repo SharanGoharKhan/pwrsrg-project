@@ -17,14 +17,15 @@ constructor() { }
         return this.shopping.slice();
     }
     addToShoppingCart(shopping: Shopping) {
+        let dummy = new Shopping(shopping.name,shopping.amount,shopping.numberOfItem);
         for(let i=0; i<this.cartItems.length; ++i) {
-            if (shopping.name == this.cartItems[i].name) {
+            if (dummy.name === this.cartItems[i].name) {
                 this.cartItems[i].numberOfItem++;
                 this.cartItemChange.next(this.cartItems.slice());
                 return;
             }
         }
-        this.cartItems.push(shopping);
+        this.cartItems.push(dummy);
         this.cartItemChange.next(this.cartItems.slice());
     }
     getCartItems() {
@@ -35,6 +36,8 @@ constructor() { }
     }
     clearCart() {
         this.cartItems = [];
+        console.log('cart items');
+        console.log(this.cartItems);
         this.cartItemChange.next(this.cartItems);
     }
     removeCartItem(index: number) {

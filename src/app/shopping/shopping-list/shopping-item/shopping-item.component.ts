@@ -10,11 +10,11 @@ import { ShoppingService } from '../../../shared/shopping.service';
 })
 export class ShoppingItemComponent implements OnInit {
   @Input() shoppingPr: Shopping;
-  @Input() index: number;
+
   constructor(private shoppingService: ShoppingService) { }
   ngOnInit() {
   }
-  onAddItem(index: number) {
+  onAddItem() {
     this.shoppingService.addToShoppingCart(this.shoppingPr);
   }
 }
