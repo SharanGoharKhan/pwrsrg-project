@@ -41,4 +41,12 @@ constructor() { }
         this.cartItems.splice(index,1);
         this.cartItemChange.next(this.cartItems.slice());
     }
+    addTotalAndAmount() {
+        let res = {total: 0, amount: 0};
+        for(let i=0; i<this.cartItems.length; ++i) {
+            res.total+= this.cartItems[i].amount*this.cartItems[i].numberOfItem;
+            res.amount+= this.cartItems[i].numberOfItem;
+        }
+        return res;
+    }
 }
