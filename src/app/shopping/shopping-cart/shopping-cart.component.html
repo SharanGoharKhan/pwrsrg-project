@@ -2,15 +2,15 @@
   <div class="col-xs-12" >
     <h2>Shopping Cart</h2>
     <div class="row" style="border-bottom: 3px solid black;"></div>
-    <div class="row" style="margin-top: 50px;margin-bottom: 50px">
+    <div class="row" *ngFor="let cartEl of cartItems" style="margin-top: 50px;margin-bottom: 50px">
       <div class="col-xs-3">
-        <h4>Hat</h4>
+        <h4>{{cartEl.name}}</h4>
       </div>
       <div class="col-xs-3">
         <h4>1</h4>
       </div>
       <div class="col-xs-3">
-        <h4>$20</h4>
+        <h4>${{cartEl.amount}}</h4>
       </div>
       <div class="col-xs-3">
         <button class="btn btn-default">X</button>

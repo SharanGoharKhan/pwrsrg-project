@@ -5,13 +5,25 @@ import { Subject } from 'rxjs/Subject';
 export class ShoppingService {
 
 constructor() { }
-shoppingItemChange = new Subject<Shopping[]>();
-private shopping: Shopping[] = [
-    new Shopping('Hat', 20),
-    new Shopping('T-Shirt', 25),
-    new Shopping('Shorts', 35)
-];
-getShoppingItems() {
-    return this.shopping.slice();
-}
+    cartItemChange = new Subject<Shopping[]>();
+    private shopping: Shopping[] = [
+        new Shopping('Hat', 20),
+        new Shopping('T-Shirt', 25),
+        new Shopping('Shorts', 35)
+    ];
+    private cartItems: Shopping[] = [
+    ];
+    getShoppingItems() {
+        return this.shopping.slice();
+    }
+    addToShoppingCart(shopping: Shopping) {
+        this.cartItems.push(shopping);
+        this.cartItemChange.next(this.cartItems.slice());
+    }
+    getCartItems() {
+        if( this.cartItems == null) {
+            return;
+        }
+        return this.cartItems.slice();
+    }
 }
